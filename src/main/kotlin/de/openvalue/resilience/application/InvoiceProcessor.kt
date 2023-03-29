@@ -6,16 +6,16 @@ import org.slf4j.LoggerFactory
 import org.springframework.mail.SimpleMailMessage
 import org.springframework.mail.javamail.JavaMailSender
 import org.springframework.scheduling.annotation.Async
-import org.springframework.stereotype.Service
+import org.springframework.stereotype.Component
 import org.springframework.transaction.event.TransactionalEventListener
 
-@Service
-class InvoiceService(val mailSender: JavaMailSender) {
+@Component
+class InvoiceProcessor(val mailSender: JavaMailSender) {
 
-    private val logger = LoggerFactory.getLogger(InvoiceService::class.java)
+    private val logger = LoggerFactory.getLogger(InvoiceProcessor::class.java)
     @Async
     @TransactionalEventListener
-    @Retry(name = "InvoiceService")
+    @Retry(name = "InvoiceProcessor")
     fun onEvent(event: OrderReceived) {
         with(event.orderEntity) {
             logger.info("Sending email for received order $this")

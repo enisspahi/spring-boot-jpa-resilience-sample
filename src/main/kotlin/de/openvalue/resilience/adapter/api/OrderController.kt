@@ -21,7 +21,7 @@ class OrderController(val orderService: OrderService) {
 
     private fun OrderEntity.toResponse() = OrderResource(
             email = email,
-            items = items.map { de.openvalue.resilience.adapter.api.model.OrderResource.OrderItem(it.name, it.count) },
+            items = items.map { OrderResource.OrderItem(it.name, it.count) },
             id = id)
 
 }
