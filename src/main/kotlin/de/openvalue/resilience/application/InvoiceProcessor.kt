@@ -22,7 +22,7 @@ class InvoiceProcessor(val mailSender: JavaMailSender) {
             val message = SimpleMailMessage()
             message.setTo(email)
             message.subject = "Invoice of your order $id"
-            message.text =  "The invoice for your order $items"
+            message.text =  "The invoice for your order $items. Ignore this email if you have already received before."
             runCatching { mailSender.send(message) }
                     .onFailure { logger.error("Failed to send email", it) }
                     .getOrThrow()
