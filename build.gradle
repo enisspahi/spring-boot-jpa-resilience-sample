@@ -17,14 +17,16 @@ repositories {
 }
 
 dependencies {
+	implementation platform('io.projectreactor:reactor-bom:2022.0.5')
+	implementation 'io.projectreactor:reactor-core'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.springframework.boot:spring-boot-starter-aop'
 	implementation 'org.springframework.boot:spring-boot-starter-mail'
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'com.fasterxml.jackson.module:jackson-module-kotlin'
-	implementation "io.github.resilience4j:resilience4j-spring-boot3:2.0.2"
 	implementation 'org.jetbrains.kotlin:kotlin-reflect'
+	implementation "io.github.resilience4j:resilience4j-retry:2.0.2"
+	implementation "io.github.resilience4j:resilience4j-reactor:2.0.2"
 	runtimeOnly 'org.postgresql:postgresql'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
